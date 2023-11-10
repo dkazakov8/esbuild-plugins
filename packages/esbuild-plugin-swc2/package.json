@@ -2,7 +2,7 @@
   "name": "esbuild-plugin-swc2",
   "author": "Dmitry Kazakov",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Integrates SWC compiler to ESBuild",
   "repository": {
     "type": "git",
@@ -13,8 +13,8 @@
     "prepublishOnly": "pnpm run build"
   },
   "peerDependencies": {
-    "esbuild": "*",
-    "@swc/core": "*"
+    "@swc/core": "*",
+    "esbuild": "*"
   },
   "engines": {
     "node": ">=16.0.0"
