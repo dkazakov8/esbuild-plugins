@@ -38,7 +38,7 @@ export const pluginReplace = ({
   loader?: Loader;
   rootDir?: string;
 } = {}): Plugin => ({
-  name: 'esbuild-plugin-replace-regex',
+  name: 'dk-esbuild-plugin-replace',
   setup(build) {
     const rootDirDefined = rootDir || process.cwd();
     const isWindows = process.platform.startsWith('win');
