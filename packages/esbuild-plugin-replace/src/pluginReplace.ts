@@ -3,7 +3,7 @@ import fs from 'fs';
 
 import { Loader, Plugin } from 'esbuild';
 
-const replacePattern: [RegExp, (...args: any) => any] = [
+export const replacePattern: [RegExp, (...args: any) => any] = [
   /\n(export default |export )?class ([a-zA-Z0-9]+)(.*?)?extends ConnectedComponent(.*?(?=}\n}))}\n}/gs,
   // eslint-disable-next-line max-params
   function replacer(
@@ -32,15 +32,11 @@ const replacePattern: [RegExp, (...args: any) => any] = [
 export const pluginReplace = ({
   filter = /.*/,
   loader = 'tsx',
-  encoding = 'utf-8',
-  patterns = [replacePattern],
   rootDir = process.cwd(),
 }: {
-  rootDir?: string;
   filter?: RegExp;
   loader?: Loader;
-  encoding?: BufferEncoding;
-  patterns?: Array<[RegExp, (...args: any) => any]>;
+  rootDir?: string;
 } = {}): Plugin => ({
   name: 'esbuild-plugin-replace-regex',
   setup(build) {
@@ -49,14 +45,9 @@ export const pluginReplace = ({
     const esc = (p: string) => (isWindows ? p.replace(/\\/g, '/') : p);
 
     build.onLoad({ filter }, (args) => {
-      return fs.promises.readFile(args.path, encoding).then((content) => {
-        let contents = content;
-
-        patterns.forEach(([regex, replacer]) => {
-          contents = contents.replace(regex, replacer);
-        });
-
-        contents = contents
+      return fs.promises.readFile(args.path, 'utf-8').then((content) => {
+        const contents = content
+          .replace(replacePattern[0], replacePattern[1])
           .replace(/__dirname/g, `"${esc(path.relative(rootDirDefined, path.dirname(args.path)))}"`)
           .replace(/__filename/g, `"${esc(path.relative(rootDirDefined, args.path))}"`);
 
