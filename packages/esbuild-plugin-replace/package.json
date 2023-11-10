@@ -2,7 +2,7 @@
   "name": "dk-esbuild-plugin-replace",
   "author": "Dmitry Kazakov",
   "license": "MIT",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Replaces __dirname and __filename and wraps class components in observer",
   "repository": {
     "type": "git",
