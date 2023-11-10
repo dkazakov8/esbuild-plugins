@@ -54,6 +54,12 @@ importers:
         specifier: 5.2.2
         version: registry.npmjs.org/typescript@5.2.2
 
+  packages/esbuild-plugin-inject-preload:
+    dependencies:
+      esbuild:
+        specifier: '*'
+        version: registry.npmjs.org/esbuild@0.19.5
+
   packages/esbuild-plugin-replace:
     dependencies:
       esbuild:
