@@ -1,0 +1,23 @@
+{
+  "name": "dk-esbuild-plugin-replace",
+  "author": "Dmitry Kazakov",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "Replaces __dirname and __filename and wraps class components in observer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkazakov8/esbuild-plugins.git"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist&&tsc --project tsconfig-compile.json",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "esbuild": "*"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts"
+}
