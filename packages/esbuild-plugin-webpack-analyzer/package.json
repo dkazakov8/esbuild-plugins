@@ -1,0 +1,26 @@
+{
+  "name": "esbuild-plugin-webpack-analyzer",
+  "author": "Dmitry Kazakov",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "Integration of Webpack Bundle Analyzer to ESBuild",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkazakov8/esbuild-plugins.git"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist&&tsc --project tsconfig-compile.json",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "webpack-bundle-analyzer": "4.9.1"
+  },
+  "peerDependencies": {
+    "esbuild": "*"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts"
+}

@@ -1,0 +1,1 @@
+export { pluginWebpackAnalyzer } from './pluginWebpackAnalyzer';
