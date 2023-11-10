@@ -66,6 +66,15 @@ importers:
         specifier: '*'
         version: registry.npmjs.org/esbuild@0.19.5
 
+  packages/esbuild-plugin-swc2:
+    dependencies:
+      '@swc/core':
+        specifier: '*'
+        version: registry.npmjs.org/@swc/core@1.3.96
+      esbuild:
+        specifier: '*'
+        version: registry.npmjs.org/esbuild@0.19.5
+
   packages/esbuild-plugin-webpack-analyzer:
     dependencies:
       esbuild:
@@ -1461,7 +1470,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-darwin-x64@1.3.96:
@@ -1472,7 +1480,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-linux-arm-gnueabihf@1.3.96:
@@ -1483,7 +1490,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-linux-arm64-gnu@1.3.96:
@@ -1494,7 +1500,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-linux-arm64-musl@1.3.96:
@@ -1505,7 +1510,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-linux-x64-gnu@1.3.96:
@@ -1516,7 +1520,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-linux-x64-musl@1.3.96:
@@ -1527,7 +1530,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-win32-arm64-msvc@1.3.96:
@@ -1538,7 +1540,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-win32-ia32-msvc@1.3.96:
@@ -1549,7 +1550,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core-win32-x64-msvc@1.3.96:
@@ -1560,7 +1560,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   registry.npmjs.org/@swc/core@1.3.96:
@@ -1588,19 +1587,16 @@ packages:
       '@swc/core-win32-arm64-msvc': registry.npmjs.org/@swc/core-win32-arm64-msvc@1.3.96
       '@swc/core-win32-ia32-msvc': registry.npmjs.org/@swc/core-win32-ia32-msvc@1.3.96
       '@swc/core-win32-x64-msvc': registry.npmjs.org/@swc/core-win32-x64-msvc@1.3.96
-    dev: true
 
   registry.npmjs.org/@swc/counter@0.1.2:
     resolution: {integrity: sha512-9F4ys4C74eSTEUNndnER3VJ15oru2NumfQxS8geE+f3eB5xvfxpWyqE5XlVnxb/R14uoXi6SLbBwwiDSkv+XEw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@swc/counter/-/counter-0.1.2.tgz}
     name: '@swc/counter'
     version: 0.1.2
-    dev: true
 
   registry.npmjs.org/@swc/types@0.1.5:
     resolution: {integrity: sha512-myfUej5naTBWnqOCc/MdVOLVjXUXtIA+NpDrDBKJtLLg2shUjBu3cZmB/85RyitKc55+lUUyl7oRfLOvkr2hsw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@swc/types/-/types-0.1.5.tgz}
     name: '@swc/types'
     version: 0.1.5
-    dev: true
 
   registry.npmjs.org/@szmarczak/http-timer@5.0.1:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@szmarczak/http-timer/-/http-timer-5.0.1.tgz}

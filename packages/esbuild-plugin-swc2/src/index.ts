@@ -1,0 +1,1 @@
+export { pluginSwc } from './pluginSwc';
