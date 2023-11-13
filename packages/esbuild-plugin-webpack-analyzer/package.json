@@ -2,7 +2,7 @@
   "name": "esbuild-plugin-webpack-analyzer",
   "author": "Dmitry Kazakov",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Integration of Webpack Bundle Analyzer to ESBuild",
   "repository": {
     "type": "git",

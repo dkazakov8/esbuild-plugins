@@ -2,7 +2,7 @@
   "name": "esbuild-plugin-inject-preload",
   "author": "Dmitry Kazakov",
   "license": "MIT",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Injects preload links to html template",
   "repository": {
     "type": "git",
