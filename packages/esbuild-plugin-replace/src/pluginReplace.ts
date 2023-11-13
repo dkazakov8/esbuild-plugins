@@ -46,15 +46,47 @@ export const pluginReplace = ({
 
     build.onLoad({ filter }, (args) => {
       return fs.promises.readFile(args.path, 'utf-8').then((content) => {
-        const contents = content
+        let contents = content
           .replace(replacePattern[0], replacePattern[1])
           .replace(/__dirname/g, `"${esc(path.relative(rootDirDefined, path.dirname(args.path)))}"`)
           .replace(/__filename/g, `"${esc(path.relative(rootDirDefined, args.path))}"`);
 
-        return {
-          contents,
-          loader,
-        };
+        const lodashImportRegex =
+          /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)['"](?:(?:lodash\/?.*?))['"][\s]*?(?:;|$|)/g;
+
+        const lodashImports = contents.match(lodashImportRegex);
+
+        if (!lodashImports) return { loader, contents };
+
+        const destructuredImportRegex = /\{\s?(((\w+),?\s?)+)\}/g;
+
+        lodashImports.forEach((line) => {
+          const destructuredImports = line.match(destructuredImportRegex);
+
+          // For example:
+          // import noop from 'lodash/noop';
+          if (!destructuredImports) return;
+
+          // For example:
+          // import { noop, isEmpty, debounce as _debounce } from 'lodash';
+          const importName = destructuredImports[0].replace(/[{}]/g, '').trim().split(', ');
+
+          let result = '';
+
+          importName.forEach((name) => {
+            const previousResult = `${result ? `${result}\n` : ''}`;
+            if (name.includes(' as ')) {
+              const [realName, alias] = name.split(' as ');
+              result = `${previousResult}import ${alias} from 'lodash/${realName}';`;
+            } else {
+              result = `${previousResult}import ${name} from 'lodash/${name}';`;
+            }
+          });
+
+          contents = contents.replace(line, result);
+        });
+
+        return { contents, loader };
       });
     });
   },

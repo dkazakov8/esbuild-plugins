@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "upd": "node pruneNodeModules.js&&pnpm i --prefer-offline",
-    "pub": "pnpm run test&&lerna version --exact --yes&&lerna publish from-git --yes&&pnpm run upd&&git add .&&git commit --amend --no-edit&&git push -f",
+    "pub": "pnpm run test&&lerna version --exact --include-merged-tags --yes&&lerna publish from-git --yes&&pnpm run upd&&git add .&&git commit upd&&git push -f",
     "build": "lerna run build",
     "test": "lerna run test",
     "analyze:js": "eslint --ignore-path ./.formatignore --ext \".js,.ts,.tsx\" ./",

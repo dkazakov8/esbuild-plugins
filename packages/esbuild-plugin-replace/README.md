@@ -3,7 +3,10 @@
 [![npm](https://img.shields.io/npm/v/dk-esbuild-plugin-replace)](https://www.npmjs.com/package/dk-esbuild-plugin-replace)
 [![license](https://img.shields.io/npm/l/dk-esbuild-plugin-replace)](https://github.com/dkazakov8/esbuild-plugins/tree/master/packages/esbuild-plugin-replace/LICENSE)
 
-Replaces __dirname and __filename and wraps class components in MobX observer (only for my ecosystem).
+> [!WARNING]
+> Only for my ecosystem
+
+Replaces __dirname and __filename, wraps class components in MobX observer and handles lodash tree-shaking.
 
 ### Usage
 
