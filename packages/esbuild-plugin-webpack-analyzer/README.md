@@ -26,5 +26,4 @@ const esbuildConfig: BuildOptions = {
 ### Features
 
 - shows only stats sizes of modules
-- does not work with `splitting: true` currently
-- the top asset name is always "js/client.js"
+- works both with `splitting: true` or `splitting: false`

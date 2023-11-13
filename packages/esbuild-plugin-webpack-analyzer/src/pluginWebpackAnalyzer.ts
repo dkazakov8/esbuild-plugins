@@ -20,7 +20,7 @@ const getModules = ({
   });
 
   return Object.entries(inputs).map(([moduleName, obj]) => {
-    const name = `../${moduleName
+    const name = `./${moduleName
       .replace(/(.*)?\/node_modules\//, '/node_modules/')
       .replace(/^((\.)*\/)+/, '')}`;
 
@@ -47,7 +47,10 @@ export const pluginWebpackAnalyzer = (options: TypeOptions): Plugin => ({
     build.onEnd((result) => {
       const metaFile = result.metafile!;
       const stats = {
-        assets: [{ name: 'js/client.js', chunks: ['client'] }],
+        assets: Object.keys(metaFile.outputs).map((chunkName) => ({
+          name: chunkName,
+          chunks: [chunkName.split('/').pop()?.split('.').shift()!],
+        })),
         modules: getModules(metaFile),
       };
 
