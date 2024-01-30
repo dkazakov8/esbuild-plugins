@@ -29,15 +29,42 @@ export const replacePattern: [RegExp, (...args: any) => any] = [
   },
 ];
 
+export const replacePatternFC: [RegExp, (...args: any) => any] = [
+  /(export default |export )?function ([A-Z][a-zA-Z0-9]+)(.*?(?=;\n}\n));\n}\n/gs,
+  // eslint-disable-next-line max-params
+  function replacer(
+    match: string,
+    exportStatement: string,
+    functionName: string,
+    functionContent: string
+  ) {
+    const wrappedComponent = `transformers.observer(function ${functionName}${functionContent};\n})\n`;
+
+    let str = "\nimport { transformers } from 'compSystem/transformers';\n";
+
+    if (exportStatement) str += exportStatement;
+
+    if (!exportStatement || !exportStatement.includes('default')) {
+      str += `const ${functionName} = ${wrappedComponent}`;
+    } else {
+      str += wrappedComponent;
+    }
+
+    return str;
+  },
+];
+
 export const pluginReplace = ({
   filter = /.*/,
   loader = 'tsx',
   rootDir = process.cwd(),
+  sourceDir = process.cwd(),
 }: {
   filter?: RegExp;
   loader?: Loader;
   rootDir?: string;
-} = {}): Plugin => ({
+  sourceDir: string;
+}): Plugin => ({
   name: 'dk-esbuild-plugin-replace',
   setup(build) {
     const rootDirDefined = rootDir || process.cwd();
@@ -45,11 +72,18 @@ export const pluginReplace = ({
     const esc = (p: string) => (isWindows ? p.replace(/\\/g, '/') : p);
 
     build.onLoad({ filter }, (args) => {
+      const wrapComponents = args.path.startsWith(sourceDir);
+
       return fs.promises.readFile(args.path, 'utf-8').then((content) => {
         let contents = content
-          .replace(replacePattern[0], replacePattern[1])
           .replace(/__dirname/g, `"${esc(path.relative(rootDirDefined, path.dirname(args.path)))}"`)
           .replace(/__filename/g, `"${esc(path.relative(rootDirDefined, args.path))}"`);
+
+        if (wrapComponents) {
+          contents = contents
+            .replace(replacePattern[0], replacePattern[1])
+            .replace(replacePatternFC[0], replacePatternFC[1]);
+        }
 
         const lodashImportRegex =
           /import\s+?(?:(?:(?:[\w*\s{},]*)\s+from\s+?)|)['"](?:(?:lodash\/?.*?))['"][\s]*?(?:;|$|)/g;

@@ -1,1 +1,1 @@
-export { pluginReplace, replacePattern } from './pluginReplace';
+export { pluginReplace, replacePattern, replacePatternFC } from './pluginReplace';
